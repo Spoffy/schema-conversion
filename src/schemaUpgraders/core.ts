@@ -1,4 +1,5 @@
 import {v2} from "./draft-02";
+import {v3} from "./draft-03";
 import {File} from "../File";
 import * as Ajv from "ajv";
 import * as path from "path";
@@ -8,7 +9,8 @@ export class core {
 
     schemas = [
         {schema: null, upgradeUsing: null, schemaFile: null},
-        {schema: "https://storyplaces.soton.ac.uk/schema/02", upgradeUsing: new v2(), schemaFile: "story.schema.02.json"}
+        {schema: "https://storyplaces.soton.ac.uk/schema/02", upgradeUsing: new v2(), schemaFile: "story.schema.02.json"},
+        {schema: "https://storyplaces.soton.ac.uk/schema/03", upgradeUsing: new v3(), schemaFile: "story.schema.03.json"}
     ];
 
     upgradeSchema(providedData, validate) {
