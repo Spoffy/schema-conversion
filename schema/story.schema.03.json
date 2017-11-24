@@ -29,6 +29,13 @@
         "review"
       ]
     },
+    "roles": {
+      "description": "The roles available to the participants of the story",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/role"
+      }
+    },
     "pages": {
       "description": "The collection of pages in the story",
       "type": "array",
@@ -98,6 +105,7 @@
     "id",
     "name",
     "author",
+    "roles",
     "pages",
     "publishState",
     "conditions",
@@ -127,6 +135,10 @@
         },
         "content": {
           "description": "The contents of the page",
+          "type": "string"
+        },
+        "messageToObservers": {
+          "description": "Message to send to any other participants in an observing state",
           "type": "string"
         },
         "pageTransition": {
@@ -631,6 +643,21 @@
         "family",
         "general",
         "advisory"
+      ]
+    },
+    "role": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
       ]
     }
   }
