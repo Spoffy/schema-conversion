@@ -201,11 +201,11 @@
       "description": "An item of content",
       "type": "object",
       "properties": {
-        "name": {"type": "string"},
+        "id": {"type": "string"},
         "body": {"type": "string"}
       },
       "required": [
-        "name",
+        "id",
         "body"
       ]
     },

@@ -64,9 +64,9 @@ export class v3 {
         //Naive and slow check for duplicate content
         for(let item of this.data.content) {
 
-            console.log("S:", item.name, "T:", page.name);
+            console.log("S:", item.id, "T:", page.name);
             if(item.body == page.content) {
-                page.contentRef = item.name;
+                page.contentRef = item.id;
                 delete page.content;
                 return;
             }
@@ -81,7 +81,7 @@ export class v3 {
         }
 
         this.data.content.push({
-          name: key,
+          id: key,
           body: page.content
         });
 
