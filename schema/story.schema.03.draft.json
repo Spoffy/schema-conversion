@@ -133,7 +133,7 @@
           "description": "The name of the page",
           "type": "string"
         },
-        "content": {
+        "contentRef": {
           "$ref": "#/definitions/contentReference"
         },
         "pageTransition": {
@@ -162,7 +162,7 @@
       "required": [
         "id",
         "name",
-        "content",
+        "contentRef",
         "pageTransition",
         "functions",
         "hint",

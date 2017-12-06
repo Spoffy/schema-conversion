@@ -66,7 +66,8 @@ export class v3 {
 
             console.log("S:", item.name, "T:", page.name);
             if(item.body == page.content) {
-                page.content = item.name;
+                page.contentRef = item.name;
+                delete page.content;
                 return;
             }
         }
@@ -85,6 +86,7 @@ export class v3 {
         });
 
         this.page_keys.add(key);
-        page.content = key;
+        page.contentRef = key;
+        delete page.content;
     }
 }
