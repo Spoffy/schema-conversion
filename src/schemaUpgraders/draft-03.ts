@@ -41,6 +41,7 @@
 import {isNullOrUndefined} from "util";
 export class v3 {
     private data;
+    private page_keys;
 
     upgrade(sourceData) {
         this.data = Object.assign({}, sourceData);
@@ -51,9 +52,8 @@ export class v3 {
     }
 
     makeContentFirstClass() {
-        if(typeof(this.data.content) != "object") {
-            this.data.content = {};
-        }
+        this.data.content = [];
+        this.page_keys = new Set();
 
         this.data.pages.forEach((page) => {
             this.makePageContentFirstClass(page);
@@ -61,13 +61,12 @@ export class v3 {
     }
 
     private makePageContentFirstClass(page) {
-        //Naive and slow check for duplicates
-        for(let key in this.data.content) {
-            let content = this.data.content[key];
+        //Naive and slow check for duplicate content
+        for(let item of this.data.content) {
 
-            console.log("S:", key, "T:", page.name);
-            if(content == page.content) {
-                page.content = key;
+            console.log("S:", item.name, "T:", page.name);
+            if(item.body == page.content) {
+                page.content = item.name;
                 return;
             }
         }
@@ -76,11 +75,16 @@ export class v3 {
         //Create a meaningful key, rather than just hashing.
         let key = page.name.replace(" ", "_");
 
-        while (key in this.data.content) {
+        while (this.page_keys.has(key)) {
             key += "_alt";
         }
 
-        this.data.content[key] = page.content;
+        this.data.content.push({
+          name: key,
+          body: page.content
+        });
+
+        this.page_keys.add(key);
         page.content = key;
     }
 }

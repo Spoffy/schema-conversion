@@ -39,7 +39,10 @@
     },
     "content": {
       "description": "The content to be used in pages of the story",
-      "type": "object"
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/content"
+      }
     },
     "functions": {
       "description": "The collection of functions in the story",
@@ -193,6 +196,18 @@
         "location"
       ],
       "additionalProperties": false
+    },
+    "content": {
+      "description": "An item of content",
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "body": {"type": "string"}
+      },
+      "required": [
+        "name",
+        "body"
+      ]
     },
     "locationReference": {
       "description": "The name field of a top level location entry",
