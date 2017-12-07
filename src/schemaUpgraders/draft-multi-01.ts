@@ -39,7 +39,7 @@
 
  ***************************************************************************** */
 
-export class v3 {
+export class multiV1 {
     private data;
 
     upgrade(sourceData) {
